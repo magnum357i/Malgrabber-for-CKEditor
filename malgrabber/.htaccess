@@ -1,0 +1,4 @@
+Options +FollowSymLinks 
+RewriteEngine on
+
+RewriteRule ^malposter=([0-9]+)$ image.php?id=$1
