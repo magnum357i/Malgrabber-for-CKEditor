@@ -1,9 +1,9 @@
 # Malgrabber-for-CKEditor
-Bu plugin ile MyAnimeList sitesinden anime bilgilerini çekebilirsiniz.
+Bu plugin ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgilerini çekebilirsiniz.
 
 ## Ayarlar
 #### Çerez Ayarları
-**cookie_setting.php** dosyasını açın.
+**cookie_settings.php** dosyasını açın.
 
 ```php
 $config["cookie_limit"] = "15";
@@ -21,7 +21,7 @@ $cookie_mins = 0;
 Maksimum kullanma limiti aşıldıktan sonra beklenilen dakika.
 
 #### Afiş Yükleme Ayarları
-**image_setting.php** dosyasını açın.
+**image_settings.php** dosyasını açın.
 
 ```php
 $config["image_save_path"] = "poster/";
@@ -34,16 +34,16 @@ $config["image_max_size"] = "400";
 Yüklenilen afişlerin en ve boy oranları için sınır değeri.
 
 # In English
-You can get anime informations with this plugin from MyAnimeList website.
+With this plugin, you can get information of any anime or manga from MyAnimeList website.
 
 ## Settings
 #### Cookie Settings
-Open **cookie_setting.php** file.
+Open **cookie_settings.php** file.
 
 ```php
 $config["cookie_limit"] = "15";
 ```
-Maximum usage limit. You have to wait for the specified time to exceed this limit.
+Maximum usage limit. If you exceed this limit, you will have to wait for the specified time.
 
 ```php
 $cookie_hours = 2;
@@ -56,7 +56,7 @@ $cookie_mins = 0;
 Expected min(s) after exceeding the maximum usage limit.
 
 #### Poster Upload Settings
-Open **image_setting.php** file.
+Open **image_settings.php** file.
 
 ```php
 $config["image_save_path"] = "poster/";
