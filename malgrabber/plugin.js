@@ -1,7 +1,7 @@
 ﻿/*
  * Malgrabber
  *
- * @version     1.2b
+ * @version     1.3b
  * @license     MIT-style license
  * @author      Magnum357
  * @copyright   Author
