@@ -6,17 +6,17 @@ Bu plugin ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgileri
 **cookie_settings.php** dosyasını açın.
 
 ```php
-$config["cookie_limit"] = "15";
+$config["cookie_limit"] = "20";
 ```
 Maksimum kullanma limiti. Bu limiti aşınca belirtilen süre kadar beklemek zorunda kalırsınız.
 
 ```php
-$cookie_hours = 2;
+$cookie_hours = 6;
 ```
 Maksimum kullanma limiti aşıldıktan sonra beklenilen saat.
 
 ```php
-$cookie_mins = 0;
+$cookie_mins = 30;
 ```
 Maksimum kullanma limiti aşıldıktan sonra beklenilen dakika.
 
@@ -24,14 +24,20 @@ Maksimum kullanma limiti aşıldıktan sonra beklenilen dakika.
 **image_settings.php** dosyasını açın.
 
 ```php
-$config["image_save_path"] = "poster/";
-```
-Afişlerin kaydedileceği dizin.
-
-```php
 $config["image_max_size"] = "400";
 ```
 Yüklenilen afişlerin en ve boy oranları için sınır değeri.
+
+#### Link Oluşturma Ayarları
+```php
+$config[ "htaccess_enabled" ] = "off";
+```
+Htaccess yönlendirmesinin açılıp açılmayacağına karar verirsiniz. Bu ayarı aktifleştirdikten sonra create_htaccess dosyasını tarayıcıda açıp oluşturduğu htaccess.txt dosyasının içindeki komutları kök dizindeki .htaccess dosyasına eklemelisiniz.
+
+```php
+$config[ "https"            ] = "off";
+```
+Linklerin başına https protokolü eklenip eklenmeyeceğine karar verirsiniz.
 
 # In English
 With this plugin, you can get information of any anime or manga from MyAnimeList website.
@@ -59,11 +65,17 @@ Expected min(s) after exceeding the maximum usage limit.
 Open **image_settings.php** file.
 
 ```php
-$config["image_save_path"] = "poster/";
-```
-The directory where the images will be saved.
-
-```php
 $config["image_max_size"] = "400";
 ```
 Limit value for the width and height of the uploaded images.
+
+#### Link Create Settings
+```php
+$config[ "htaccess_enabled" ] = "off";
+```
+You decide whether to turn on htaccess redirection. After activating this setting, open **create_htaccess** file in the browser and copy the commands in generated **htaccess.txt** file to **htaccess file** in the root directory.
+
+```php
+$config[ "https"            ] = "off";
+```
+You decide whether to add the https protocol per link.

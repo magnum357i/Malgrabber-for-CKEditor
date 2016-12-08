@@ -1,0 +1,152 @@
+/* Malgrabber CSS Begin */
+
+/* right side bar */
+
+.getDataMAL p {
+	margin:0;
+	padding:0;
+}
+
+.getDataMAL .mal_info span {
+	/*
+	float:right;
+	text-align:right;
+	*/
+}
+
+.getDataMAL .mal_content {
+	background:#e1e7f5;
+	display:flex;
+}
+
+.getDataMAL .mal_title {
+	background:#1d439b;
+	color:white;
+	display:flex;
+	height:42px;
+	font-size:14px;
+	margin-top:10px;
+}
+
+.getDataMAL .mal_title b {
+	position:relative;
+	top:25%;
+}
+
+.getDataMAL .mal_title_text {
+	width:100%;
+	padding:0 10px;
+}
+
+.getDataMAL .mal_logo {
+	position:relative;
+	bottom:8px;
+	right:10px;
+	height:50px;
+	width:144px;
+}
+
+.getDataMAL .mal_logo img {
+	border:0 !important;
+}
+
+.getDataMAL .mal_poster img {
+	max-width:none;
+	margin-right:10px;
+	border:1px solid #b0b0b0;
+}
+
+.getDataMAL .mal_poster {
+	float:left;
+}
+
+.getDataMAL .mal_info {
+	background:#F6F6F6;
+	border:1px solid #b0b0b0;
+	height:100%;
+	padding:10px;
+	margin:10px 10px 10px 0px;
+	width:350px;
+}
+
+.getDataMAL .mal_header {
+	border-bottom:1px solid #b0b0b0;
+	display:flex;
+	margin:0px 0px 5px 0px;
+	padding:0;
+}
+
+.getDataMAL .mal_info .mal_header {
+	border-color:  #d0d0d0;
+}
+
+.getDataMAL .mal_subject {
+	margin:10px;
+	width:100%;
+	text-align:justify;
+	overflow-wrap:break-word;
+	word-wrap:break-word;
+	word-break:break-word;
+	hyphens:auto;
+}
+
+.getDataMAL .mal_source {
+	background:#d4e1ff;
+	padding:1px 10px 1px 1px;
+	border-bottom:1px solid #1d439b;
+	width:100%;	
+	font-size:11px;
+}
+
+.getDataMAL {
+	width:100%;
+	font-size:13px;
+	color: #000;
+}
+
+.getDataMAL .mal_text p b {
+	color: #444;
+}
+
+.getDataMAL .mal_title,
+.getDataMAL div.mal_text,
+.getDataMAL div.mal_text p,
+.getDataMAL div.mal_title div.mal_title_text {
+	text-align:left !important;
+}
+
+.getDataMAL .mal_source,
+.getDataMAL .mal_subject_source {
+	text-align:right !important;
+}
+
+@media screen and ( max-width:1000px ) {
+	.getDataMAL .mal_poster,
+	.getDataMAL .mal_info,
+	.getDataMAL .mal_logo,
+	.mal_poster2, .mal_info2 {
+		display:none;
+	}
+}
+
+/* left side bar */
+.getDataMAL .mal_poster2 {
+	float:none;
+	margin-bottom:10px;
+}
+
+.getDataMAL .mal_info2 .mal_poster2 img {
+    width:240px;
+    max-width:100%;
+}
+
+.getDataMAL .mal_info2 {
+	background:#F6F6F6;
+	border:1px solid #b0b0b0;
+	height:100%;
+	padding:10px;
+	margin:10px 0px 10px 10px;
+	width:350px;
+}
+
+/* Malgrabber CSS End */

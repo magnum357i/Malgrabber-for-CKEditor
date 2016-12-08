@@ -1,0 +1,10 @@
+# Htaccess Installation (You need to manually do this for security reasons.) -[[
+
+1) Open create_htacess.php file with a browser. htaccess.txt file will be created in the plugin folder.
+2) Open created htaccess.txt file and copy the contents to the clipboard.
+3) Add the contents of the clipboard to the end of the htaccess file in the root directory.
+4) Open settings/image file and turn the value of $config["htaccess_enabled"] "off" to "on".
+
+Result: The path will be "/malgrabber/poster|icons/" instead of "/ckeditor/plugins/malgrabber/poster|icons/".
+
+]]-

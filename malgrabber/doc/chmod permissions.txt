@@ -1,0 +1,5 @@
+# CHMOD Permissions -[[
+
+Set to 660 chmod permissions for all files and folders in the plugin folder.
+
+]]-

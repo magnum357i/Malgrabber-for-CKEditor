@@ -1,11 +1,20 @@
 CKEDITOR.plugins.setLang('malgrabber','tr', {
 	langSwitch:                      'tr',
+	langTimeZone:                    'europe/istanbul',
 	button:                          'MyAnimeList',
 	title:                           'MyAnimeList bilgilerini getir',
+	tabName1:                        'Sayfa',
+	tabName2:                        'Başlık ve Tanıtım',
+	tabName3:                        'Ayarlar',
 	infoType:                        'Kategori',
 	infoId:                          'No',
-	infoCustomAnimeTitle:            'Türkçe İsmi',
-	infoSubject:                     'Konu',
+	customTitle:                     'Özel Başlık Tanımlama',
+	customSubject:                   'Tanıtım',	
+	customSource:                    'Tanıtım Kaynağı',
+	customSourceLink:                'Tanıtım Linki',
+	settingsVertPos:                 'Bilgi kutusunu afişin altına yerleştir.',
+	settingsSubjectChars:            'Bu ayara uzun tanıtımlarda seçilmesi için karakter sınırı konulmuştur.<br>Bu ayarı kullanmak için gereken karakter: ',
+	settingsSubjectCharsSuccess:     'Bu ayarı kullanabilirsiniz.',
 
 
 	infoIdValidate:                  'No bölümünü boş bırakmayın.',
@@ -14,10 +23,16 @@ CKEDITOR.plugins.setLang('malgrabber','tr', {
 	missingData:                     'İstenilen bilgiler alınamadı.',
 	posterSizeError:                 'Çekilen afişin boyutu fazla büyük.',
 	posterFolderError:               'Afiş klasörü oluşturulmamış.',
+	subjectCharsError:               'Tanıtım, karakter limitinin altında kaldığından işleminiz gerçekleştirilemedi.',
 
 
 	malHeaderOtherNames:             'DİĞER İSİMLERİ',
-	malHeaderSubject:                'KONU',
+
+
+	malHeaderSubject:                'TANITIM',
+	malSubjectSource:                'Tanıtım kaynağı: ',
+
+
 	malHeaderStatistics:             'İSTATİSTİKLER',
 	malHeaderInfo:                   'BİLGİ',
 
@@ -56,6 +71,20 @@ CKEDITOR.plugins.setLang('malgrabber','tr', {
 	malDateValueOct:                 '$1 Eki $2',
 	malDateValueNov:                 '$1 Kas $2',
 	malDateValueDec:                 '$1 Ara $2',
+
+	malDateValueJan2:                'Oca $1',
+	malDateValueFeb2:                'Şub $1',
+	malDateValueMar2:                'Mar $1',
+	malDateValueApr2:                'Nis $1',
+	malDateValueMay2:                'May $1',
+	malDateValueJun2:                'Haz $1',
+	malDateValueJul2:                'Tem $1',
+	malDateValueAug2:                'Ağu $1',
+	malDateValueSep2:                'Eyl $1',
+	malDateValueOct2:                'Eki $1',
+	malDateValueNov2:                'Kas $1',
+	malDateValueDec2:                'Ara $1',
+
 	malDateValueTo:                  ' - ',
 	malDateValueNotAvailable:        'Belli değil',
 
@@ -99,8 +128,8 @@ CKEDITOR.plugins.setLang('malgrabber','tr', {
 	malGenresValueAdventure:         'Macera',
 	malGenresValueCars:              'Yarış',
 	malGenresValueComedy:            'Komedi',
-	malGenresValueDementia:          'Piskolojik Bozukluk',
-	malGenresValueDemons:            'Yaratıklar',
+	malGenresValueDementia:          'Zihinsel Karmaşa',
+	malGenresValueDemons:            'Şeytanlar',
 	malGenresValueDrama:             'Dram',
 	malGenresValueDoujinshi:         'Doujinshi',
 	malGenresValueEcchi:             'Ecchi',
@@ -125,7 +154,7 @@ CKEDITOR.plugins.setLang('malgrabber','tr', {
 	malGenresValueRomance:           'Romantik',
 	malGenresValueSamurai:           'Samuray',
 	malGenresValueSchool:            'Okul',
-	malGenresValueScFi:              'Bilimkurgu',
+	malGenresValueScFi:              'Bilim Kurgu',
 	malGenresValueSeinen:            'Seinen',
 	malGenresValueShoujo:            'Shoujo',
 	malGenresValueShoujoAi:          'Shoujo Ai',
@@ -145,4 +174,25 @@ CKEDITOR.plugins.setLang('malgrabber','tr', {
 	malGeneralValueNA:               'Yok',
 	malGeneralValueNoneFound:        'Bulunamadı',
 	malGeneralValueUnknown:          'Bilinmiyor',
+
+	malDate:                         'Veriler $1 $2 $3 $6 günü $4:$5 saatinde MyAnimeList sitesinin şu sayfasından çekilmiştir: ',
+	malDateDays1:                    'Pazartesi',
+	malDateDays2:                    'Salı',
+	malDateDays3:                    'Çarşamba',
+	malDateDays4:                    'Perşembe',
+	malDateDays5:                    'Cuma',
+	malDateDays6:                    'Cumartesi',
+	malDateDays7:                    'Pazar',
+	malDateMonths01:                 'Ocak',
+	malDateMonths02:                 'Şubat',
+	malDateMonths03:                 'Mart',
+	malDateMonths04:                 'Nisan',
+	malDateMonths05:                 'Mayıs',
+	malDateMonths06:                 'Haziran',
+	malDateMonths07:                 'Temmuz',
+	malDateMonths08:                 'Ağustos',
+	malDateMonths09:                 'Eylül',
+	malDateMonths10:                 'Ekim',
+	malDateMonths11:                 'Kasım',
+	malDateMonths12:                 'Aralık',
 });
