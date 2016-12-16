@@ -4,11 +4,14 @@
 		if ( count($m) > 0 ) { return $m[1]; }
 	}
 
-	function get_text( $r, $c, $s ) {
+	function get_text( $r, $c, $s, $t ) {
 		preg_match( $r, $c, $m );
 		if ( count( $m ) > 0 ) {
 		if ( $s == false ) { $m[1] = $m[1]; }
-		return strip_tags( $m[1], "<br>" );
+			if ( !isset($t) )
+			{ return strip_tags( $m[1] ); }
+			else
+			{ return strip_tags( $m[1], $t ); }
 		}
 	}
 

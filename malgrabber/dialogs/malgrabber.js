@@ -1,5 +1,4 @@
 ﻿CKEDITOR.dialog.add( 'malGrabberDialog', function( editor ) {
-    var subjectChars_MaxLimit = 1600;
     return {
         minWidth:  350,
         minHeight: 50,
@@ -49,23 +48,6 @@
                         type:  'textarea',
                         rows:  '4',
                         label: editor.lang.malgrabber.customSubject,
-                        onKeyUp: function() {
-
-                        var my_dialog             = this.getDialog(),
-                        cHtml                     = my_dialog.getContentElement( 'settings', 'subject_chars' ).getElement(),
-                        subjectChars_CurrentChars = this.getValue().length;                        
-
-                            if ( subjectChars_CurrentChars >= subjectChars_MaxLimit ) {
-                                my_dialog.getContentElement('settings','settings_vert_pos').enable();
-                                cHtml.setHtml( '<span>' + editor.lang.malgrabber.settingsSubjectCharsSuccess + '</span>' );
-                            }
-                            else
-                            {
-                                cHtml.setHtml( '<span>' + editor.lang.malgrabber.settingsSubjectChars + (subjectChars_MaxLimit - subjectChars_CurrentChars) + '</span>' );
-                                my_dialog.getContentElement('settings','settings_vert_pos').disable();
-                            }
-
-                        }
                     },
                     {
                         type:     'hbox',
@@ -87,22 +69,6 @@
                     },
                 ],
             },
-            {
-                id:       'settings',
-                label:    editor.lang.malgrabber.tabName3,
-                elements: [
-                    {
-                        id:    'settings_vert_pos',
-                        type:  'checkbox',
-                        label: editor.lang.malgrabber.settingsVertPos,
-                    },
-                    {
-                        id:   'subject_chars',
-                        type: 'html',
-                        html: '<span style="margin-bottom: 10px;">' + editor.lang.malgrabber.settingsSubjectChars + '0</span>',
-                    },
-                ],
-            },
 
             ],
 
@@ -113,10 +79,8 @@
         info_id                    = parseInt( dialog.getValueOf( 'info', 'id' )                      ),
         custom_title               = dialog.getValueOf( 'custom', 'title'                             ),
         custom_subject             = escapeHTML( dialog.getValueOf( 'custom', 'subject' )             ),
-        custom_subject_count       = custom_subject.length,
         custom_subject_source      = escapeHTML( dialog.getValueOf( 'custom', 'subject_source' )      ),
-        custom_subject_source_link = escapeHTML( dialog.getValueOf( 'custom', 'subject_source_link' ) ),
-        settings_settings_vert_pos = dialog.getValueOf( 'settings', 'settings_vert_pos' );
+        custom_subject_source_link = escapeHTML( dialog.getValueOf( 'custom', 'subject_source_link' ) );
 
             if( Number.isInteger( info_id ) ) {
             var
@@ -166,8 +130,8 @@
                         anime.mal_info.info.mal_type            = swap_text( "movie",                    editor.lang.malgrabber.malTypeValueMovie,               anime.mal_info.info.mal_type            );
                         anime.mal_info.info.mal_type            = swap_text( "special",                  editor.lang.malgrabber.malTypeValueSpecial,             anime.mal_info.info.mal_type            );
                         anime.mal_info.info.mal_type            = swap_text( "music",                    editor.lang.malgrabber.malTypeValueMusic,               anime.mal_info.info.mal_type            );
-                        anime.mal_info.info.mal_type            = swap_text( "novel",                    editor.lang.malgrabber.malGeneralValueNovel,            anime.mal_info.info.mal_type            );
-                        anime.mal_info.info.mal_type            = swap_text( "one\-shot",                editor.lang.malgrabber.malTypeValueNovel,               anime.mal_info.info.mal_type            );
+                        anime.mal_info.info.mal_type            = swap_text( "novel",                    editor.lang.malgrabber.malTypeValueNovel,               anime.mal_info.info.mal_type            );
+                        anime.mal_info.info.mal_type            = swap_text( "one\-shot",                editor.lang.malgrabber.malTypeValueOneShot,             anime.mal_info.info.mal_type            );
 
 
                         anime.mal_info.info.mal_date            = swap_text( "jan +([0-9]*), +([0-9+])", editor.lang.malgrabber.malDateValueJan,                 anime.mal_info.info.mal_date            );
@@ -282,6 +246,204 @@
 
 						anime.mal_info.info.mal_anime_publisher = swap_text( "none found, add some",     editor.lang.malgrabber.malGeneralValueNoneFound,        anime.mal_info.info.mal_anime_publisher );
 
+                        anime.mal_info.info.mal_manga_authors = reverse_name( anime.mal_info.info.mal_manga_authors );
+
+                        if ( anime.mal_list_staff ) {
+
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?)staffName_end/g,         '<p class="mal_staff_name">$1</p>'            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?), *(.*?)staffName_end/g, '<p class="mal_staff_name">$2 $1</p>'         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffPosition_begin(.*?)staffPosition_end/g,    '<p class="mal_staff_position"><i>$1</i></p>' );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /,[^ ]/g,                                        ', '                                          );
+
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /original character design/gi, editor.lang.malgrabber.malStaffValueOriginalCharacterDesign );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /episode director/gi,          editor.lang.malgrabber.malStaffValueEpisodeDirector         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /sound director/gi,            editor.lang.malgrabber.malStaffValueSoundDirector           );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /storyboard/gi,                editor.lang.malgrabber.malStaffValueStoryboard              );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /animation director/gi,        editor.lang.malgrabber.malStaffValueAnimationDirector       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /key animation/gi,             editor.lang.malgrabber.malStaffValueKeyAnimation            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /theme song arrangement/gi,    editor.lang.malgrabber.malStaffValueThemeSongArrangement    );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /theme song performance/gi,    editor.lang.malgrabber.malStaffValueThemeSongPerformance    );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /associate producer/gi,        editor.lang.malgrabber.malStaffValueAssociateProducer       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /co\-director/gi,              editor.lang.malgrabber.malStaffValueCoDirector              );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /assistant director/gi,        editor.lang.malgrabber.malStaffValueAssistantDirector       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /art director/gi,              editor.lang.malgrabber.malStaffValueArtDirector             );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /animation director/gi,        editor.lang.malgrabber.malStaffValueAnimationDirector       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /in\-between animation/gi,     editor.lang.malgrabber.malStaffValueInBetweenAnimation      );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /director of photography/gi,   editor.lang.malgrabber.malStaffValueDirectorofPhotography   );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /background art/gi,            editor.lang.malgrabber.malStaffValueBackgroundArt           );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /character design/gi,          editor.lang.malgrabber.malStaffValueCharacterDesign         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /sound effects/gi,             editor.lang.malgrabber.malStaffValueSoundEffects            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /special effects/gi,           editor.lang.malgrabber.malStaffValueSpecialEffects          );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /production assistant/gi,      editor.lang.malgrabber.malStaffValueProductionAssistant     );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /color setting/gi,             editor.lang.malgrabber.malStaffValueColorSetting            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /original creator/gi,          editor.lang.malgrabber.malStaffValueOriginalCreator         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /theme song lyrics/gi,         editor.lang.malgrabber.malStaffValueThemeSongLyrics         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /theme song composition/gi,    editor.lang.malgrabber.malStaffValueThemeSongComposition    );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /series composition/gi,        editor.lang.malgrabber.malStaffValueSeriesComposition       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /inserted song performance/gi, editor.lang.malgrabber.malStaffValueInsertedSongPerformance );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /executive producer/gi,        editor.lang.malgrabber.malStaffValueExecutiveProducer       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /production manager/gi,        editor.lang.malgrabber.malStaffValueProductionManager       );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /adr director/gi,              editor.lang.malgrabber.malStaffValueADRDirector             );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /producer/gi,                  editor.lang.malgrabber.malStaffValueProducer                );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /director/gi,                  editor.lang.malgrabber.malStaffValueDirector                );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /script/gi,                    editor.lang.malgrabber.malStaffValueScript                  );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /music/gi,                     editor.lang.malgrabber.malStaffValueMusic                   );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /setting/gi,                   editor.lang.malgrabber.malStaffValueSetting                 );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /screenplay/gi,                editor.lang.malgrabber.malStaffValueScreenplay              );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /editing/gi,                   editor.lang.malgrabber.malStaffValueEditing                 );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /planning/gi,                  editor.lang.malgrabber.malStaffValuePlanning                );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /2nd key animation/gi,         editor.lang.malgrabber.malStaffValue2ndKeyAnimation         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /recording engineer/gi,        editor.lang.malgrabber.malStaffValueRecordingEngineer       );
+
+                        anime.mal_list_staff =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderStaff + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_staff
+                        +
+                        '</div>';
+
+                        if ( anime.mal_list_staff.match(/staffName/) || anime.mal_list_staff.match(/staffPosition/) || anime.mal_list_staff.match(/no staff for this anime have been added to this title/i) ) { anime.mal_list_staff = ""; }
+                        }
+
+                        if ( anime.mal_list_voice ) {
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_1_begin([^,]*?)MainvoiceCol_1_end/g,               '<p class="mal_voice_character">$1 - ' + editor.lang.malgrabber.malVoiceValueMain + '</p>'          );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_1_begin([^,]*?), *(.*?)MainvoiceCol_1_end/g,       '<p class="mal_voice_character">$2 $1 - ' + editor.lang.malgrabber.malVoiceValueMain + '</p>'       );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_1_begin([^,]*?)SupportingvoiceCol_1_end/g,         '<p class="mal_voice_character">$1 - ' + editor.lang.malgrabber.malVoiceValueSupporting + '</p>'    );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_1_begin([^,]*?), *(.*?)SupportingvoiceCol_1_end/g, '<p class="mal_voice_character">$2 $1 - ' + editor.lang.malgrabber.malVoiceValueSupporting + '</p>' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_1_begin([^,]*?)JapanesevoiceName_1_end/g,         '$1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')'    );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_1_begin([^,]*?), *(.*?)JapanesevoiceName_1_end/g, '$2 $1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_2_begin([^,]*?)JapanesevoiceName_2_end/g,         '$1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')'    );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_2_begin([^,]*?), *(.*?)JapanesevoiceName_2_end/g, '$2 $1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_3_begin([^,]*?)JapanesevoiceName_3_end/g,         '$1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')'    );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_3_begin([^,]*?), *(.*?)JapanesevoiceName_3_end/g, '$2 $1 (' + editor.lang.malgrabber.malVoiceValueJapanese + ')' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /voiceName_3_begin\.\.\.voiceName_3_end/g, ''       );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(\))([A-Z])/g,                            '$1, $2' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_2_begin(.*?)voiceCol_2_end/g,                '<p class="mal_voice_name"><i>$1</i></p>'                 );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(<p class="mal_voice_name"><i>)&nbsp;(<\/i><\/p>)/g, '$1' + editor.lang.malgrabber.malVoiceValueUnknown + '$2' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(<p class="mal_voice_name"><i>)(<\/i><\/p>)/g,       '$1' + editor.lang.malgrabber.malVoiceValueUnknown + '$2' );
+
+                        anime.mal_list_voice =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderVoice + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_voice
+                        +
+                        '</div>';
+
+                        if ( anime.mal_list_voice.match(/voiceCol_[1-2]_(begin|end)/) || anime.mal_list_voice.match(/voiceName/) || anime.mal_list_voice.match(/no characters or voice actors have been added to this title/i) ) { anime.mal_list_voice = ""; }
+                        }
+
+                        if ( anime.mal_list_characters ) {
+
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Maincharacters_end/g,               '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'          );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Supportingcharacters_end/g,         '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>'    );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Maincharacters_end/g,       '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'       );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Supportingcharacters_end/g, '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>' );
+
+                        if ( anime.mal_list_characters.match(/characters_(begin|end)/g) ) { anime.mal_list_characters = ""; }
+
+                        anime.mal_list_characters =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeadeCharacters + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_characters
+                        +
+                        '</div>'; 
+                        }
+
+                        }
+                        else
+                        {
+
+                        if ( anime.mal_list_staff ) {
+
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?)staffName_end/g,         '<p class="mal_staff_name">$1</p>'            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?), *(.*?)staffName_end/g, '<p class="mal_staff_name">$2 $1</p>'         );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffPosition_begin(.*?)staffPosition_end/g,    '<p class="mal_staff_position"><i>$1</i></p>' );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /,[^ ]/g,                                        ', '                                          );
+
+                        anime.mal_list_staff =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderStaff + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_staff
+                        +
+                        '</div>';
+
+                        if ( anime.mal_list_staff.match(/staffName/) || anime.mal_list_staff.match(/staffPosition/) || anime.mal_list_staff.match(/no staff for this anime have been added to this title/i) ) { anime.mal_list_staff = ""; }
+                        }
+
+                        if ( anime.mal_list_voice ) {
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/(voiceCol_1_begin)(.*?)(Main|Supporting)(voiceCol_1_end)/g, '$1$2 - $3$4' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_1_begin(.*?)voiceCol_1_end/g, '<p class="mal_voice_character">$1</p>' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_1_begin(.*?)(Japanese)voiceName_1_end/g, '$1 ($2)' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_2_begin(.*?)(Japanese)voiceName_2_end/g, '$1 ($2)' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceName_3_begin(.*?)(Japanese)voiceName_3_end/g, '$1 ($2)' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /voiceName_3_begin\.\.\.voiceName_3_end/g, ''       );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(\))([A-Z])/g,                            '$1, $2' );
+
+                        anime.mal_list_voice = anime.mal_list_voice.replace(/voiceCol_2_begin(.*?)voiceCol_2_end/g,                '<p class="mal_voice_name"><i>$1</i></p>'                 );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(<p class="mal_voice_name"><i>)&nbsp;(<\/i><\/p>)/g, '$1' + editor.lang.malgrabber.malVoiceValueUnknown + '$2' );
+                        anime.mal_list_voice = anime.mal_list_voice.replace( /(<p class="mal_voice_name"><i>)(<\/i><\/p>)/g,       '$1' + editor.lang.malgrabber.malVoiceValueUnknown + '$2' );
+
+                        anime.mal_list_voice =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderVoice + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_voice
+                        +
+                        '</div>';
+
+                        if ( anime.mal_list_voice.match(/voiceCol_[1-2]_(begin|end)/) || anime.mal_list_voice.match(/voiceName/) || anime.mal_list_voice.match(/no characters or voice actors have been added to this title/i) ) { anime.mal_list_voice = ""; }
+                        }
+
+                        if ( anime.mal_list_characters ) {
+
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Maincharacters_end/g,               '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'          );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Supportingcharacters_end/g,         '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>'    );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Maincharacters_end/g,       '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'       );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Supportingcharacters_end/g, '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>' );
+
+                        if ( anime.mal_list_characters.match(/characters_(begin|end)/g) ) { anime.mal_list_characters = ""; }
+
+                        anime.mal_list_characters =
+                        '<br>'
+                        +
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeadeCharacters + '</b></p>'
+                        +
+                        '<div class="mal_text mal_list">'
+                        +
+                        anime.mal_list_characters
+                        +
+                        '</div>'; 
+                        }
+
+                        }
+
                         if ( custom_subject ) {
 
                             if ( custom_subject_source ) {
@@ -296,144 +458,25 @@
                         anime.mal_subject.mal_subject = custom_subject;
                         }
 
-                        anime.mal_info.info.mal_manga_authors = reverse_name( anime.mal_info.info.mal_manga_authors );
-
-                        }
-
                         var
-                        mal_created_date_org = anime.mal_created_date,
-                        date_zero = "";
+                        mal_created_date_org = anime.mal_created_date;
 
                             for ( i = 1; i <= 12; i++ ) {
-                                if ( i < 10 ) { date_zero = "0" } else { date_zero = ""; }
-                            anime.mal_created_date = swap_text( "(\/[^\/]*\-)(" + date_zero + i + ")(\-[^\/]*\/)", '$1' + editor.lang.malgrabber['malDateMonths' + date_zero + i] + '$3', anime.mal_created_date );
+                            anime.mal_created_date = swap_text( "(\/[^\/]*\-)(" + i + ")(\-[^\/]*\/)", '$1' + editor.lang.malgrabber['malDateMonths' + i] + '$3', anime.mal_created_date );
                             }
-                        
-                            for ( i = 1; i <= 7; i++ ) {
+
+                            for ( i = 0; i <= 6; i++ ) {
                             anime.mal_created_date = swap_text( "(\/)(" + i + ")(\/)", '$1' + editor.lang.malgrabber['malDateDays' + i] + '$3', anime.mal_created_date );
                             }
 
                         anime.mal_created_date = swap_text( "\/([^\/]*)\-([^\/]*)\-([^\/]*)\/([^\/]*):([^\/]*)\/([^\/]*)\/", editor.lang.malgrabber.malDate, anime.mal_created_date );
 
-                        var mal_html = "";
-
-                        if ( settings_settings_vert_pos == true ) {
-
-                            if ( custom_subject_count > subjectChars_MaxLimit ) {
-                            /* Left View */
-                            mal_html =
-                            '<div class="mal_title">'
-                            +
-                            '<div class="mal_title_text"><b>' + anime.mal_title + '</b></div>'
-                            +
-                            '<div class="mal_logo" style="background:url(\'' + anime.displayed_icons_path + 'mal_logo.png' + '\');background-size:127px 50px;background-repeat:no-repeat;"></div>'
-                            +
-                            '</div>'
-                            +
-                            '<div class="mal_content">'
-                            +
-                            '<div class="mal_info2">'
-                            +
-                            '<div class="mal_poster2"><img src="' + anime.displayed_poster_path + anime.mal_poster + '"></div>'
-                            +
-                            '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderInfo + '</b></p>'
-                            +
-                            '<div class="mal_text">'
-                            +
-                            namer([
-                            anime.mal_info.info.mal_type,
-                            anime.mal_info.info.mal_episode,
-                            anime.mal_info.info.mal_manga_volume,
-                            anime.mal_info.info.mal_manga_chapter,
-                            anime.mal_info.info.mal_date,
-                            anime.mal_info.info.mal_anime_publisher,
-                            anime.mal_info.info.mal_manga_publisher,
-                            anime.mal_info.info.mal_anime_source,
-                            anime.mal_info.info.mal_manga_authors,
-                            anime.mal_info.info.mal_genres,
-                            anime.mal_info.info.mal_duration,
-                            ],[
-                            editor.lang.malgrabber.malType,
-                            editor.lang.malgrabber.malEpisode,
-                            editor.lang.malgrabber.malMangaVolume,
-                            editor.lang.malgrabber.malMangaChapter,
-                            anime_date,
-                            editor.lang.malgrabber.malAnimePublisher,
-                            editor.lang.malgrabber.malMangaPublisher,
-                            editor.lang.malgrabber.malAnimeSource,
-                            editor.lang.malgrabber.malMangaAuthors,
-                            editor.lang.malgrabber.malGenres,
-                            editor.lang.malgrabber.malDuration,
-                            ])
-                            +
-                            '</div>'
-                            +
-                            '<br>'
-                            +
-                            '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderStatistics + '</b></p>'
-                            +
-                            '<div class="mal_text">'
-                            +
-                            namer([
-                            anime.mal_info.statistics.mal_score,
-                            anime.mal_info.statistics.mal_rank,
-                            ],[
-                            editor.lang.malgrabber.malScore,
-                            editor.lang.malgrabber.malRank,
-                            ])
-                            +
-                            '</div>'
-                            +
-                            '</div>'
-                            +
-                            '<div class="mal_subject">'
-                            +
-                            '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderOtherNames + '</b></p>'
-                            +
-                            '<div class="mal_text">'
-                            +
-                            namer([
-                            anime.mal_subject.mal_title_alt,
-                            anime.mal_subject.mal_title_english,
-                            anime.mal_subject.mal_title_japanese,
-                            anime.mal_subject.mal_title_synonyms,
-                            ],[
-                            editor.lang.malgrabber.malTitleAlt,
-                            editor.lang.malgrabber.malTitleEnglish,
-                            editor.lang.malgrabber.malTitleJapanese,
-                            editor.lang.malgrabber.malTitleSynonyms,
-                            ])
-                            +
-                            '</div>'
-                            +
-                            '<br>'
-                            +
-                            '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderSubject + '</b></p>'
-                            +
-                            '<div class="mal_text">'
-                            +
-                            anime.mal_subject.mal_subject
-                            +
-                            '</div>'
-                            +
-                            '</div>'
-                            +
-                            '</div>'
-                            +
-                            '<div class="mal_source">' + '<i>' + '<span datetime="' + mal_created_date_org + '">' + anime.mal_created_date + '</span>' + '</i>' + '<a target="_blank" href="' + url + '" target="_blank">' + info_type + ' / ' + info_id + '</a>' + '</div>';
-                            }
-                            else
-                            { editor.showNotification( editor.lang.malgrabber.subjectCharsError ); }
-                        }
-                        else
-                        {
-                        /* Right View */
-                        mal_html =
+                        var mal_html =
                         '<div class="mal_title">'
                         +
                         '<div class="mal_title_text"><b>' + anime.mal_title + '</b></div>'
                         +
-                        '<div class="mal_logo" style="background:url(\'' + anime.displayed_icons_path + 'mal_logo.png' + '\');background-size:127px 50px;background-repeat:no-repeat;"></div>'
+                        '<div class="mal_logo" style="background-image:url(\'' + anime.displayed_icons_path + 'mal_logo.png' + '\');background-size:127px 50px;background-repeat:no-repeat;"></div>'
                         +
                         '</div>'
                         +
@@ -441,7 +484,27 @@
                         +
                         '<div class="mal_subject">'
                         +
-                        '<div class="mal_poster"><img src="' + anime.displayed_poster_path + anime.mal_poster + '"></div>'
+                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderSubject + '</b></p>'
+                        +
+                        '<div class="mal_text">'
+                        +
+                        anime.mal_subject.mal_subject
+                        +
+                        '</div>'
+                        +
+                        anime.mal_list_voice
+                        +
+                        anime.mal_list_staff
+                        +
+                        anime.mal_list_characters
+                        +
+                        '</div>'
+                        +
+                        '<div class="mal_info">'
+                        +
+                        '<span class="mal_poster"><img src="' + anime.displayed_poster_path + anime.mal_poster + '"></span>'
+                        +
+                        '<br>'
                         +
                         '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderOtherNames + '</b></p>'
                         +
@@ -462,18 +525,6 @@
                         '</div>'
                         +
                         '<br>'
-                        +
-                        '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderSubject + '</b></p>'
-                        +
-                        '<div class="mal_text">'
-                        +
-                        anime.mal_subject.mal_subject
-                        +
-                        '</div>'
-                        +
-                        '</div>'
-                        +
-                        '<div class="mal_info">'
                         +
                         '<p class="mal_header"><b>' + editor.lang.malgrabber.malHeaderInfo + '</b></p>'
                         +
@@ -527,8 +578,7 @@
                         +
                         '</div>'
                         +
-                        '<div class="mal_source">' + '<i>' + '<span datetime="' + mal_created_date_org + '">' + anime.mal_created_date + '</span>' + '</i>' + '<a target="_blank" href="' + url + '" target="_blank">' + info_type + ' / ' + info_id + '</a>' + '</div>';
-                        }
+                        '<div class="mal_source">' + '<i>' + anime.mal_created_date + '</i>' + '<a target="_blank" href="' + url + '" target="_blank">' + info_type + ' / ' + info_id + '</a>' + '</div>';
 
                         mal_div.setHtml( mal_html );
 
@@ -541,16 +591,6 @@
             editor.showNotification( editor.lang.malgrabber.idError );
             }
         },
-        onShow: function() {
-
-        var 
-        reset_dialog = this,
-        rHtml = reset_dialog.getContentElement('settings','subject_chars').getElement();
-
-        rHtml.setHtml( '<span>' + editor.lang.malgrabber.settingsSubjectChars + subjectChars_MaxLimit + '</span>' );
-        reset_dialog.getContentElement('settings','settings_vert_pos').disable();
-
-        }
     };
 } );
 

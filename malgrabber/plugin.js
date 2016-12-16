@@ -1,7 +1,7 @@
 ﻿/*
  *   @name                 Malgrabber
  *   @description          This is a plugin to get anime or manga information from MyAnimeList.
- *   @version              1.3.8a (alpha)
+ *   @version              1.4.0
  *   @license              MIT-style license
  *   @author               Magnum357
  *   @download             https://github.com/magnum357i/Malgrabber-for-CKEditor
