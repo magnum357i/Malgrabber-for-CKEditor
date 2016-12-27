@@ -26,12 +26,12 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 
 
 	malHeaderSubject:            'SUBJECT',
-	malSubjectSource:            'Subject source: ',
+	malSubjectSource:            'Subject by: ',
 
 	malHeaderStaff:              'STAFF',
 
 
-	malHeaderVoice:              'CASTING',
+	malHeaderVoice:              'CAST',
 	malVoiceValueUnknown:        'Not specified',
 
 
@@ -82,4 +82,7 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 	malDateMonths10:             'October',
 	malDateMonths11:             'November',
 	malDateMonths12:             'December',
+
+
+	malMore:                     'Read more',
 });

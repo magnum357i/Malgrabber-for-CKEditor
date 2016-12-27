@@ -10,12 +10,14 @@
 	else
 	{ setcookie(cookie_name, 1, cookie_timeout); }
 
-	$url = $_POST["url"];
+	$url = strip_tags($_POST["url"]);
+	$custom_title = strip_tags($_POST["custom_title"]);
+	$default_timezone = strip_tags($_POST["default_timezone"]);
 
 	try {
 
 		if ( $ctval > cookie_limit )
-		{ throw new Exception( cookie_limit . ',' . $cookie_hours . ',' . $cookie_mins ); }
+		{ throw new Exception( "mal_cookie_limit=" . cookie_limit . ',' . $cookie_hours . ',' . $cookie_mins ); }
 
 			setcookie( cookie_name, $ctval + 1, cookie_timeout );
 
@@ -46,7 +48,7 @@
 
 				$mal_poster = $image_name;
 
-				$mal_title_alt       = $_POST[ "custom_title" ];
+				$mal_title_alt       = $custom_title;
 				$mal_title_english   = get_text( '@<span class="dark_text">english:</span>(.*?)</div>@si',         $content, false, "" );
 				$mal_title_japanese  = get_text( '@<span class="dark_text">japanese:</span>(.*?)</div>@si',        $content, false, "" );
 				$mal_title_synonyms  = get_text( '@<span class="dark_text">synonyms:</span>(.*?)</div>@si',        $content, false, "" );
@@ -122,7 +124,7 @@
 
 
 				$mal_title           = $mal_title;
-				$mal_title_alt       = $_POST[ "custom_title" ];
+				$mal_title_alt       = $custom_title;
 					if ( $mal_title_alt != "" ) {
 					$mal_title_temp  = $mal_title;
 					$mal_title       = $mal_title_alt;
@@ -158,26 +160,26 @@
 
 				}
 
-				if ( $_POST[ 'defualt_timezone' ] )
-				{ date_default_timezone_set( $_POST[ 'defualt_timezone' ] ); }
+				if ( $default_timezone )
+				{ date_default_timezone_set( $default_timezone ); }
 
 				$json =
 				array(
 				'mal_created_date'      => date('/j-n-Y/H:i/w/', time()),
 				'displayed_poster_path' => $displayed_server_path . $displayed_path . image_save_path,
 				'displayed_icons_path'  => $displayed_path . 'icons/',
-				'mal_title'             => brep( $mal_title  ),
-				'mal_poster'            => brep( $mal_poster ),
-				'mal_subject'           =>
-				array(
-				      'mal_title_alt'      => brep( $mal_title_alt      ),
-				      'mal_title_english'  => brep( $mal_title_english  ),
-				      'mal_title_japanese' => brep( $mal_title_japanese ),
-				      'mal_title_synonyms' => brep( $mal_title_synonyms ),
-				      'mal_subject'        => brep( $mal_subject        ),
-				),
+				'mal_title'             => brep( $mal_title   ),
+				'mal_poster'            => brep( $mal_poster  ),
+				'mal_subject'           => brep( $mal_subject ),
 				'mal_info' =>
 				array(
+					  'title' =>
+					  array(
+				      'mal_title_alt'       => brep( $mal_title_alt       ),
+				      'mal_title_english'   => brep( $mal_title_english   ),
+				      'mal_title_japanese'  => brep( $mal_title_japanese  ),
+				      'mal_title_synonyms'  => brep( $mal_title_synonyms  ),
+					  ),
 				      'info' =>
 				      array(
 				      'mal_type'            => brep( $mal_type            ),

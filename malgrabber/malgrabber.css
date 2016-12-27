@@ -2,6 +2,10 @@
 
 .getDataMal, .getDataMAL p, .getDataMAL div {
 	line-height:2;
+	overflow-wrap:break-word;
+	word-wrap:break-word;
+	word-break:break-word;
+	hyphens:auto;
 }
 
 .getDataMAL p {
@@ -48,8 +52,8 @@
 
 .getDataMAL .mal_poster img {
 	margin-bottom:10px;
-	width:260px;
 	max-width:100%;
+	min-width:100%;
 	border:1px solid #e4e4e4;
 }
 
@@ -77,13 +81,12 @@
 }
 
 .getDataMAL .mal_subject {
+	text-align:justify;
+}
+
+.getDataMAL .mal_subject_and_crew {
 	margin:10px;
 	width:100%;
-	text-align:justify;
-	overflow-wrap:break-word;
-	word-wrap:break-word;
-	word-break:break-word;
-	hyphens:auto;
 }
 
 .getDataMAL .mal_source {
@@ -91,11 +94,16 @@
 	padding:1px 10px 1px 1px;
 	border-bottom:1px solid #1d439b;
 	width:100%;	
-	font-size:11px;
+	font-size:11px;	
+}
+
+.getDataMAL .mal_voice_name, .getDataMAL .mal_staff_position {
+	font-size:95%;
+	color:#3f3f3f;
 }
 
 .getDataMAL .mal_list .mal_staff_position, .getDataMAL .mal_list .mal_voice_name, .getDataMAL .mal_list .mal_list_characters {
-	margin-bottom:10px;
+	margin-bottom:15px;
 }
 
 .getDataMAL .mal_list .mal_staff_position:last-child, .getDataMAL .mal_list .mal_voice_name:last-child, .getDataMAL .mal_list .mal_list_characters:last-child {
@@ -124,12 +132,55 @@
 	text-align:right !important;
 }
 
+.getDataMAL .mal_subject_source {
+	display:flex;	
+	float:right;
+}
+
+.getDataMAL .mal_subject_source_title {
+	white-space:pre;
+}
+
 @media screen and ( max-width:1000px ) {
 	.getDataMAL .mal_poster,
 	.getDataMAL .mal_info,
 	.getDataMAL .mal_logo {
 		display:none;
 	}
+}
+
+.loaderMAL [class^="mal"] {
+	background:none;
+	border:0;
+}
+
+.loaderMAL .mal_content, .loaderMAL .mal_source {
+	display:none !important;
+}
+
+.mal_more_hide {
+	display:none;
+}
+
+.mal_more_show {
+	display:block;
+}
+
+.mal_more_click {
+    background: -webkit-linear-gradient(rgba(125,185,232,0) 20%, rgb(239, 239, 239) 100%);
+    background: -o-linear-gradient(rgba(125,185,232,0) 20%, rgb(239, 239, 239) 100%);
+    background: linear-gradient(rgba(125,185,232,0) 20%, rgb(239, 239, 239) 100%);
+    padding:3px 6px;
+    height:200px;
+    position:relative;
+    margin-top:-200px;
+    padding-top:175px;
+    cursor:pointer;
+}
+
+.mal_more {
+	height:200px;
+	overflow:hidden;
 }
 
 /* Malgrabber CSS End */
