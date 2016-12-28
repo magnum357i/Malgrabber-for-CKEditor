@@ -1,5 +1,5 @@
 # Malgrabber-for-CKEditor
-Bu plugin ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgilerini çekebilirsiniz.
+Bu widget ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgilerini çekebilirsiniz.
 
 ## Test Edilen Sürüm
 IPB 4.1.16.1'deki CKEditor 4.5.11 sürümüne göre yazılmıştır.
@@ -51,13 +51,13 @@ $config[ "https" ] = "off";
 Linklerin başına https protokolü eklenip eklenmeyeceğine karar verirsiniz.
 
 # In English
-With this plugin, you can get information of any anime or manga from MyAnimeList website.
+With this widget, you can get information of any anime or manga from MyAnimeList website.
 
 ## Tested Version
 It is written according to CKEditor 4.5.11 version in IPB 4.1.16.1.
 
 ## Features
-- Translating the captured informations (Except English language. Because MyAnimeList's defualt language is English.)
+- Translating the captured informations *(Except English language. Because MyAnimeList's defualt language is English.)*
 - Saving to a poster server
 - Responsive width
 - Mobile compatibility *(The sidebar does not appear in mobile.)*

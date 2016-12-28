@@ -2,31 +2,30 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 	langSwitch:                  'en',
 	langTimeZone:                'america/new_york',
 	button:                      'MyAnimeList',
-	title:                       'Get MyAnimeList informations',
+	title:                       'Get MyAnimeList information',
 	tabName1:                    'Page',
-	tabName2:                    'Title and Subject',
+	tabName2:                    'Title and Synopsis',
 	infoType:                    'Type',
 	infoId:                      'Id',
 	customTitle:                 'Custom Title',
-	customSubject:               'Subject',
-	customSource:                'Subject Source',
-	customSourceLink:            'Subject Link',
+	customSubject:               'Introduction',
+	customSource:                'Introduction Source',
+	customSourceLink:            'Intro Link',
 
 
-	infoIdValidate:              'Not leave the id section.',
-	limitError:                  'You used $1 rights! Can re-use it after $2 hour(s) $3 min(s).',
-	idError:                     'Can enter only numbers in "id section".',
-	missingData:                 'There are missing informations on url.',
+	infoIdValidate:              'You cannot leave the ID section blank.',
+	limitError:                  'You used up your $1 rights. You can use the widget again in $2 hour(s) and $3 minute(s).',
+	idError:                     'Only numbers are allowed in the ID section.',
+	missingData:                 'Missing data at the URL.',
 	posterSizeError:             'Poster size is too big.',
 	posterFolderError:           'Poster folder is not created.',
-	subjectCharsError:           'Your transaction could not be performed because the number of characters in the subject is below the character limit.',
 
 
 	malHeaderOtherNames:         'OTHER NAMES',
 
 
-	malHeaderSubject:            'SUBJECT',
-	malSubjectSource:            'Subject by: ',
+	malHeaderSubject:            'INTRODUCTION',
+	malSubjectSource:            'Introduction by: ',
 
 	malHeaderStaff:              'STAFF',
 
@@ -41,7 +40,7 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 	malHeaderInfo:               'INFO',
 
 
-	malTitleAlt:                 'Original: ',
+	malTitleAlt:                 'Romaji: ',
 	malTitleEnglish:             'English: ',
 	malTitleJapanese:            'Japanese: ',
 	malTitleSynonyms:            'Synonyms: ',
@@ -62,7 +61,7 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 	malRank:                     'Rank: ',
 	malGenres:                   'Genres: ',
 
-	malDate:                     'On $1 $2 $3, $6 at $4:$5 the data was withdrawn the following page in MyAnimeList website: ',
+	malDate:                     'The data above was withdrawn on $1 $2 $3, $6 at $4:$5 from the following page on MyAnimeList: ',
 	malDateDays0:                'Sunday',
 	malDateDays1:                'Monday',
 	malDateDays2:                'Tuesday',

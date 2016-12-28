@@ -1,7 +1,7 @@
 ﻿/*
  *   @name                 Malgrabber
  *   @description          This is a plugin to get anime or manga information from MyAnimeList.
- *   @version              1.4.3
+ *   @version              1.4.4
  *   @license              MIT-style license
  *   @author               Magnum357
  *   @download             https://github.com/magnum357i/Malgrabber-for-CKEditor
@@ -100,16 +100,6 @@ CKEDITOR.plugins.add( 'malgrabber', {
 			upcast: function( element ) {
 				return element.name == 'div' && element.hasClass( 'getDataMAL' );
 			},
-
-            init: function() {
-                var data_subject = this.element.findOne( '.mal_subject .mal_text' );
-                if ( typeof data_subject === "object" ) {
-                    
-                }
-                else {
-                    this.setData( 'subject', data_subject );
-                }
-            },
 
 			data: function() {
 
