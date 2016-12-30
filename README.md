@@ -1,12 +1,12 @@
 # Malgrabber-for-CKEditor
-Bu widget ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgilerini çekebilirsiniz.
+Bu eklenti ile MyAnimeList sitesinden herhangi bir anime veya manganın bilgilerini çekebilirsiniz.
 
 ## Test Edilen Sürüm
 IPB 4.1.16.1'deki CKEditor 4.5.11 sürümüne göre yazılmıştır.
 
 ## Özellikler
 - Çekilen bilgileri çevirebilme *(İngilizce hariç. MyAnimeList'in varsayılan dili İngilizce çünkü.)*
-- Afişi sunucuya kaydetme
+- Afişi ve yazıları sunucuya kaydetme
 - Sayfa genişliğine göre orantılama
 - Mobil uyum *(Sağ kısım mobilde gözükmez.)*
 - Sade tasarım
@@ -50,15 +50,18 @@ $config[ "https" ] = "off";
 ```
 Linklerin başına https protokolü eklenip eklenmeyeceğine karar verirsiniz.
 
+## Notlar
+styles/malgrabber.css dosyası içindeki kodları her yerde çağrılan başka bir stil dosyasına kopyalayıp bu dosyayı siliniz.
+
 # In English
-With this widget, you can get information of any anime or manga from MyAnimeList website.
+With this extension, you can get information of any anime or manga from MyAnimeList website.
 
 ## Tested Version
 It is written according to CKEditor 4.5.11 version in IPB 4.1.16.1.
 
 ## Features
 - Translating the captured informations *(Except English language. Because MyAnimeList's defualt language is English.)*
-- Saving to a poster server
+- Saving poster images and texts to server
 - Responsive width
 - Mobile compatibility *(The sidebar does not appear in mobile.)*
 - Flat design
@@ -101,3 +104,6 @@ You decide whether to turn on htaccess redirection. After activating this settin
 $config[ "https" ] = "off";
 ```
 You decide whether to add the https protocol per link.
+
+## Notes
+Copy the code in styles/malgrabber.css to another called style file everywhere and delete this file.

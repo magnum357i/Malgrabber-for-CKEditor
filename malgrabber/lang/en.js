@@ -35,6 +35,8 @@ CKEDITOR.plugins.setLang('malgrabber','en', {
 
 
 	malHeadeCharacters:          'CHARACTERS',
+	malCharactersValueMain:        'Main',
+	malCharactersValueSupporting:  'Support',
 
 	malHeaderStatistics:         'STATISTICS',
 	malHeaderInfo:               'INFO',

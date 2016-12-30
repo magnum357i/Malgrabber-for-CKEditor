@@ -1,0 +1,7 @@
+# In forum style structures, users that not logged in can not view the CSS look? -[[
+
+1) Open styles/malgrabber.css file.
+2) Copy all the codes in and paste it to a css file called everyhere from the admin panel.
+3) Delete styles/malgrabber.css file.
+
+]]-

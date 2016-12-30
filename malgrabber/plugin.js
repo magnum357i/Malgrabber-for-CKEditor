@@ -1,7 +1,7 @@
 ﻿/*
  *   @name                 Malgrabber
  *   @description          This is a plugin to get anime or manga information from MyAnimeList.
- *   @version              1.4.4
+ *   @version              1.4.5
  *   @license              MIT-style license
  *   @author               Magnum357
  *   @download             https://github.com/magnum357i/Malgrabber-for-CKEditor
@@ -11,7 +11,7 @@ CKEDITOR.plugins.add( 'malgrabber', {
 	requires: 'widget',
     icons:    'malgrabber',
     lang:     'tr,en',
-    init:  function( editor ) {
+    init:     function( editor ) {
 
     $(function() {
 
@@ -39,7 +39,7 @@ CKEDITOR.plugins.add( 'malgrabber', {
 
         var html_head = document.getElementsByTagName( 'head' )[0],
         html_style    = html_head.getElementsByTagName( 'style' )[0],
-        css_file      = this.path + "malgrabber.css";
+        css_file      = this.path + "styles/malgrabber.css";
 
             if ( html_style )
             {
@@ -294,6 +294,8 @@ CKEDITOR.plugins.add( 'malgrabber', {
                         anime.mal_list_staff = anime.mal_list_staff.replace( /staffPosition_begin(.*?)staffPosition_end/g,    '<p class="mal_staff_position"><i>$1</i></p>' );
                         anime.mal_list_staff = anime.mal_list_staff.replace( /,[^ ]/g,                                        ', '                                          );
 
+
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /chief animation director/gi,     editor.lang.malgrabber.malStaffValueChiefAnimationDirector     );
                         anime.mal_list_staff = anime.mal_list_staff.replace( /mechanical design/gi,            editor.lang.malgrabber.malStaffValueMechanicalDesign           );
                         anime.mal_list_staff = anime.mal_list_staff.replace( /production coordination/gi,      editor.lang.malgrabber.malStaffValueProductionCoordination     );
                         anime.mal_list_staff = anime.mal_list_staff.replace( /assistant producer/gi,           editor.lang.malgrabber.malStaffValueAssistantProducer          );
@@ -417,10 +419,9 @@ CKEDITOR.plugins.add( 'malgrabber', {
 
                         if ( anime.mal_list_staff ) {
 
-                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?)staffName_end/g,         '<p class="mal_staff_name">$1</p>'            );
-                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin([^,]*?), *(.*?)staffName_end/g, '<p class="mal_staff_name">$2 $1</p>'         );
-                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffPosition_begin(.*?)staffPosition_end/g,    '<p class="mal_staff_position"><i>$1</i></p>' );
-                        anime.mal_list_staff = anime.mal_list_staff.replace( /,[^ ]/g,                                        ', '                                          );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffName_begin(.*?)staffName_end/g,         '<p class="mal_staff_name">$1</p>'            );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /staffPosition_begin(.*?)staffPosition_end/g, '<p class="mal_staff_position"><i>$1</i></p>' );
+                        anime.mal_list_staff = anime.mal_list_staff.replace( /,[^ ]/g,                                     ', '                                          );
 
                         anime.mal_list_staff =
                         '<br>'
@@ -469,10 +470,8 @@ CKEDITOR.plugins.add( 'malgrabber', {
 
                         if ( anime.mal_list_characters ) {
 
-                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Maincharacters_end/g,               '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'          );
-                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?)Supportingcharacters_end/g,         '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>'    );
-                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Maincharacters_end/g,       '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'       );
-                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin([^,]*?), *(.*?)Supportingcharacters_end/g, '<p class="mal_list_characters">$2 $1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>' );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin(.*?)Maincharacters_end/g,       '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueMain + '</p>'       );
+                        anime.mal_list_characters = anime.mal_list_characters.replace( /characters_begin(.*?)Supportingcharacters_end/g, '<p class="mal_list_characters">$1 - ' + editor.lang.malgrabber.malCharactersValueSupporting + '</p>' );
 
                         if ( anime.mal_list_characters.match( /characters_(begin|end)/g ) ) { anime.mal_list_characters = ""; }
 
